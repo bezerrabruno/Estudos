@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:persistencia_dados/app_widget.dart';
 
-void main() => runApp(const AppWidget());
+import 'app_widget.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const AppWidget());
+}

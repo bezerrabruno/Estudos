@@ -2,7 +2,7 @@ class Person {
   final String name;
   final String age;
   final String clas;
-  final String history;
+  String history;
   int atk;
   int def;
   int life;
@@ -11,7 +11,7 @@ class Person {
     required this.name,
     required this.age,
     required this.clas,
-    required this.history,
+    this.history = '',
     this.atk = 0,
     this.def = 0,
     this.life = 0,

@@ -1,7 +1,6 @@
 import 'package:sqflite/sqflite.dart';
 
 import '../app_data.dart';
-
 import '/model/person.dart';
 
 class PersonDao {
@@ -26,35 +25,27 @@ class PersonDao {
   static const String _life = 'life';
 
   Future<int> save(Person person) async {
-    final db = await database();
-    return db.insert(_tableName, Person.toMap(person));
+    final Database? db = await Teste.data();
+    return db!.insert(_tableName, Person.toMap(person));
   }
 
   Future<int> update(Person person, int id) async {
-    final db = await database();
-    return db.update(_tableName, Person.toMap(person), where: '$id = $id');
+    final Database? db = await Teste.data();
+    return db!.update(_tableName, Person.toMap(person), where: '$id = $id');
   }
 
   Future<Person> find() async {
-    final Database db = await database();
-    final List<Map<String, dynamic>> result = await db.query(_tableName);
+    final Database? db = await Teste.data();
+    final List<Map<String, dynamic>> result = await db!.query(_tableName);
 
-    if (result[0].isEmpty) {
+    if (result.isEmpty) {
       var newPerson = Person(
         name: 'name',
         age: 'age',
         clas: 'class',
         history: 'history',
-        atk: 0,
-        def: 0,
-        life: 0,
       );
-
-      db.insert(_tableName, Person.toMap(newPerson));
-      final List<Map<String, dynamic>> result = await db.query(_tableName);
-
-      final Person person = Person.fromMap(result[0]);
-      return person;
+      return newPerson;
     } else {
       final Person person = Person.fromMap(result[0]);
       return person;

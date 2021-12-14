@@ -3,25 +3,14 @@ import 'package:path/path.dart';
 
 import 'dao/person_dao.dart';
 
-Database? _database;
-
-Future<Database> database() async {
-  if (_database != null) {
-    return _database!;
-  } else {
-    _database = await _initDB('estudo.db');
-    return _database!;
+class Teste {
+  static Future<Database?> data() async {
+    return openDatabase(
+      join(await getDatabasesPath(), 'demo.db'),
+      version: 1,
+      onCreate: (db, version) async {
+        return db.execute(PersonDao.tableSql);
+      },
+    );
   }
-}
-
-Future<Database> _initDB(String filePath) async {
-  final path = join(await getDatabasesPath(), filePath);
-
-  return openDatabase(
-    path,
-    version: 1,
-    onCreate: (Database db, int version) async {
-      await db.execute(PersonDao.tableSql);
-    },
-  );
 }
