@@ -1,2 +1,7 @@
-A sample command-line application with an entrypoint in `bin/`, library code
-in `lib/`, and example unit test in `test/`.
+Um estudo de:
+Variaveis
+Condicionais
+Laços
+Funções
+
+Ponto de entrada em `bin/` e codigos em `lib/`.
