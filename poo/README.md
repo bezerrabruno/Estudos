@@ -1,2 +1,3 @@
-A sample command-line application with an entrypoint in `bin/`, library code
-in `lib/`, and example unit test in `test/`.
+Um estudo de: Classes, geters e seter, objetos.
+
+Ponto de entrada em bin/ e codigos em lib/.
