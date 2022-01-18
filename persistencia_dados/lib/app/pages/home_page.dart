@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:persistencia_dados/model/person.dart';
 
-import '/db/dao/person_dao.dart';
+import '../model/person.dart';
+import '../db/sqflite/dao/person_dao.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -11,19 +11,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final PersonDao _dao = PersonDao();
+  bool created = false;
+  late Person? _person;
 
-  late Person _person;
+  final PersonDao _dao = PersonDao();
 
   @override
   void initState() {
-    _person = Person(name: 'name', age: 'age', clas: 'clas');
     super.initState();
   }
 
   Future<void> _find() async {
     _person = await _dao.find();
     await Future.delayed(const Duration(seconds: 2));
+
+    if (_person != null) {
+      created = true;
+    }
     setState(() {});
   }
 
@@ -45,46 +49,41 @@ class _HomePageState extends State<HomePage> {
     _find();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: const Text('Profile'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _person.name == 'name'
+          created == false
               ? const CircularProgressIndicator()
-              : Container(
-                  height: 200,
-                  width: 150,
-                  color: Colors.amber,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        _person.name,
-                        style: const TextStyle(
-                          color: Colors.black,
-                        ),
+              : Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      _person!.name,
+                      style: const TextStyle(
+                        color: Colors.black,
                       ),
-                      Text(
-                        _person.age,
-                        style: const TextStyle(
-                          color: Colors.black,
-                        ),
+                    ),
+                    Text(
+                      _person!.age,
+                      style: const TextStyle(
+                        color: Colors.black,
                       ),
-                      Text(
-                        _person.clas,
-                        style: const TextStyle(
-                          color: Colors.black,
-                        ),
+                    ),
+                    Text(
+                      _person!.clas,
+                      style: const TextStyle(
+                        color: Colors.black,
                       ),
-                      Text(
-                        _person.history,
-                        style: const TextStyle(
-                          color: Colors.black,
-                        ),
+                    ),
+                    Text(
+                      _person!.history,
+                      style: const TextStyle(
+                        color: Colors.black,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,

@@ -1,7 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 
 import '../app_data.dart';
-import '/model/person.dart';
+import '../../../model/person.dart';
 
 class PersonDao {
   static const String tableSql = 'CREATE TABLE $_tableName('
