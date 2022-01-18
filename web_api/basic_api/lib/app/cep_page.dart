@@ -48,10 +48,12 @@ class _CepPageState extends State<CepPage> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             Container(
-              height: 180,
+              height: 250,
               width: 300,
+              padding: const EdgeInsets.all(16),
               color: Theme.of(context).primaryColor,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Text>[
                   const Text('Info'),
