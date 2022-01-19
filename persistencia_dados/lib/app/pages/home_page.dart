@@ -16,6 +16,10 @@ class _HomePageState extends State<HomePage> {
 
   final PersonDao _dao = PersonDao();
 
+  final TextEditingController _controllerName = TextEditingController();
+  final TextEditingController _controllerAge = TextEditingController();
+  final TextEditingController _controllerClas = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -25,17 +29,24 @@ class _HomePageState extends State<HomePage> {
     _person = await _dao.find();
     await Future.delayed(const Duration(seconds: 2));
 
-    if (_person != null) {
-      created = true;
-    }
-    setState(() {});
+    setState(() {
+      if (_person != null) {
+        created = true;
+      }
+    });
   }
 
-  Future<void> _update() async {
-    await _dao.update(
-      Person(name: 'Bruno', age: '20', clas: 'Humano'),
-      1,
-    );
+  Future<void> _update(Person newPerson) async {
+    setState(() {
+      created = false;
+    });
+
+    await _dao.update(newPerson, 1);
+    await Future.delayed(const Duration(seconds: 2));
+
+    setState(() {
+      created = true;
+    });
   }
 
   Future<void> _save() async {
@@ -85,6 +96,19 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ),
+          Column(
+            children: [
+              TextField(
+                controller: _controllerName,
+              ),
+              TextField(
+                controller: _controllerAge,
+              ),
+              TextField(
+                controller: _controllerClas,
+              ),
+            ],
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -93,7 +117,13 @@ class _HomePageState extends State<HomePage> {
                 child: const Text('Save'),
               ),
               ElevatedButton(
-                onPressed: () => _update(),
+                onPressed: () => _update(
+                  Person(
+                    name: _controllerName.text,
+                    age: _controllerAge.text,
+                    clas: _controllerClas.text,
+                  ),
+                ),
                 child: const Text('Update'),
               ),
             ],
