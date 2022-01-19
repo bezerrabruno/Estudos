@@ -10,31 +10,35 @@ class HomePage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Center(
-            child: GestureDetector(
-              onTap: () => Modular.to.pushNamed('/router/'),
-              child: const Text(
-                'Routes',
-                style: TextStyle(
-                  fontSize: 56,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-          ),
-          Center(
-            child: GestureDetector(
-              onTap: () => Modular.to.pushNamed('/dependencies/'),
-              child: const Text(
-                'dependencies',
-                style: TextStyle(
-                  fontSize: 56,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-          ),
+          _card(context, title: 'dependencies', route: '/dependencies/'),
+          _card(context, title: 'router', route: '/router/'),
         ],
+      ),
+    );
+  }
+
+  Widget _card(
+    BuildContext context, {
+    required String title,
+    required String route,
+  }) {
+    return SizedBox(
+      height: 100,
+      width: double.maxFinite,
+      child: Material(
+        color: Theme.of(context).primaryColor,
+        child: InkWell(
+          onTap: () => Modular.to.pushNamed(route),
+          child: Center(
+            child: Text(
+              title,
+              style: const TextStyle(
+                fontSize: 56,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
