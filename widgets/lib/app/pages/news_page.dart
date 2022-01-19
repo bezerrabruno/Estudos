@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '/widgets/my_scaffold.dart';
-import '/widgets/my_card.dart';
-import '/widgets/my_float_button.dart';
+import '../widgets/my_scaffold.dart';
+import '../widgets/my_card.dart';
+import '../widgets/my_float_button.dart';
 
 class NewsPage extends StatefulWidget {
   const NewsPage({Key? key}) : super(key: key);

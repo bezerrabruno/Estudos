@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '/blocs/change_page_bloc.dart';
+import '../blocs/change_page_bloc.dart';
 
 class MyButtomBar extends StatelessWidget {
   final Bloc<dynamic, int> barBloc;

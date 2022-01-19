@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '/blocs/change_page_bloc.dart';
+import '../blocs/change_page_bloc.dart';
 
-import '/widgets/my_app_bar.dart';
-import '/widgets/my_scaffold.dart';
-import '/widgets/my_buttom_bar.dart';
-import '/widgets/my_icon_button.dart';
+import '../widgets/my_app_bar.dart';
+import '../widgets/my_scaffold.dart';
+import '../widgets/my_buttom_bar.dart';
+import '../widgets/my_icon_button.dart';
 
 import 'news_page.dart';
 import 'search_new_page.dart';

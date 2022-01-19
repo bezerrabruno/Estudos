@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '/widgets/my_scaffold.dart';
-import '/widgets/my_card.dart';
+import '../widgets/my_scaffold.dart';
+import '../widgets/my_card.dart';
 
 class SearchNewsPage extends StatefulWidget {
   const SearchNewsPage({Key? key}) : super(key: key);
