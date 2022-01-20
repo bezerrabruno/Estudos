@@ -15,23 +15,7 @@ class CepPage extends StatefulWidget {
 class _CepPageState extends State<CepPage> {
   final TextEditingController _controller = TextEditingController();
 
-  Cep cep = Cep(
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-  );
-
-  @override
-  initState() {
-    super.initState();
-  }
+  Cep? cep;
 
   update() {
     super.setState(() {});
@@ -49,26 +33,50 @@ class _CepPageState extends State<CepPage> {
           children: <Widget>[
             Container(
               height: 250,
-              width: 300,
+              width: 320,
               padding: const EdgeInsets.all(16),
               color: Theme.of(context).primaryColor,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Text>[
-                  const Text('Info'),
-                  Text('cep: ${cep.cep}'),
-                  Text('logradouro: ${cep.logradouro}'),
-                  Text('complemento: ${cep.complemento}'),
-                  Text('bairro: ${cep.bairro}'),
-                  Text('localidade: ${cep.localidade}'),
-                  Text('uf: ${cep.uf}'),
-                  Text('ibge: ${cep.ibge}'),
-                  Text('gia: ${cep.gia}'),
-                  Text('ddd: ${cep.ddd}'),
-                  Text('siafi: ${cep.siafi}'),
-                ],
-              ),
+              child: cep != null
+                  ? Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        title(),
+                        const Divider(
+                          color: Colors.white,
+                        ),
+                        Text('cep: ${cep!.cep}'),
+                        Text('logradouro: ${cep!.logradouro}'),
+                        Text('complemento: ${cep!.complemento}'),
+                        Text('bairro: ${cep!.bairro}'),
+                        Text('localidade: ${cep!.localidade}'),
+                        Text('uf: ${cep!.uf}'),
+                        Text('ibge: ${cep!.ibge}'),
+                        Text('gia: ${cep!.gia}'),
+                        Text('ddd: ${cep!.ddd}'),
+                        Text('siafi: ${cep!.siafi}'),
+                      ],
+                    )
+                  : Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        title(),
+                        const Divider(
+                          color: Colors.white,
+                        ),
+                        const Text('cep: '),
+                        const Text('logradouro: '),
+                        const Text('complemento: '),
+                        const Text('bairro: '),
+                        const Text('localidade: '),
+                        const Text('uf: '),
+                        const Text('ibge: '),
+                        const Text('gia: '),
+                        const Text('ddd: '),
+                        const Text('siafi: '),
+                      ],
+                    ),
             ),
             Column(
               children: [
@@ -89,6 +97,19 @@ class _CepPageState extends State<CepPage> {
               ],
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget title() {
+    return const Center(
+      child: Text(
+        'Info',
+        style: TextStyle(
+          fontSize: 26,
+          fontWeight: FontWeight.w600,
+          color: Colors.white,
         ),
       ),
     );
