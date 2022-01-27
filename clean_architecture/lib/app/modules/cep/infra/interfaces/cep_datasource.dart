@@ -1,3 +1,3 @@
 abstract class CepDatasource {
-  Future searchCep(String cep);
+  Future<Map> searchCep(String cep);
 }

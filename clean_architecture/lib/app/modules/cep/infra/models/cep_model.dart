@@ -3,7 +3,7 @@ import 'package:clean_architecture/app/modules/cep/domain/entities/cep.dart';
 class CepModel extends Cep {
   CepModel() : super();
 
-  static Cep fromMap(Map<String, dynamic> map) {
+  static Cep fromMap(Map map) {
     // Cep(all)
     return Cep(
       cep: map['cep'],
