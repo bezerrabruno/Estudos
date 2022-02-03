@@ -58,7 +58,7 @@ class _CepPageState extends State<CepPage> {
 
   Widget card() {
     return Container(
-      height: 250,
+      height: 270,
       width: 320,
       padding: const EdgeInsets.all(16),
       color: Theme.of(context).primaryColor,
