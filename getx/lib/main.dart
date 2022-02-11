@@ -15,9 +15,12 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData.dark(),
       initialRoute: '/',
-      initialBinding: CepBindings(),
       getPages: [
-        GetPage(name: '/', page: () => const CepPage()),
+        GetPage(
+          name: '/',
+          page: () => const CepPage(),
+          binding: CepBindings(),
+        ),
       ],
     );
   }

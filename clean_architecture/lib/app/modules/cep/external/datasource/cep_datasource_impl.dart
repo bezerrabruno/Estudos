@@ -8,12 +8,12 @@ class CepDatasourceImpl implements CepDatasource {
   const CepDatasourceImpl(this.dio);
 
   @override
-  Future<Map> searchCep(String cep) async {
+  Future<dynamic> searchCep(String cep) async {
     try {
       final result = await dio.get<Map>('https://viacep.com.br/ws/$cep/json/');
       return result.data!;
     } catch (e) {
-      rethrow;
+      return e.toString();
     }
   }
 }

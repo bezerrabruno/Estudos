@@ -9,7 +9,6 @@ class CepApi {
 
   const CepApi(this.dio);
 
-  @override
   Future<Map<String, dynamic>> searchCep(String cep) async {
     try {
       final response = await dio.get('$baseUrl/$cep/json/');

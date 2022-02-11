@@ -1,5 +1,5 @@
-import '../../entities/cep.dart';
+import '../../entities/response_cep.dart';
 
 abstract class SearchCep {
-  Future<Cep> seachCep(String cep);
+  Future<ResponseCep> seachCep(String cep);
 }

@@ -5,6 +5,8 @@ import 'package:clean_architecture/app/modules/cep/domain/interfaces/domain/sear
 import 'package:clean_architecture/app/modules/cep/presenter/blocs/cep/cep_event.dart';
 import 'package:clean_architecture/app/modules/cep/presenter/blocs/cep/cep_state.dart';
 
+import '../../../domain/entities/response_cep.dart';
+
 class CepBloc extends Bloc<CepEvent, CepState> {
   final SearchCep searchCep;
 
@@ -18,17 +20,14 @@ class CepBloc extends Bloc<CepEvent, CepState> {
   void seachCep(event, emit) async {
     emit(const SCLoading());
 
-    try {
-      final result = await searchCep.seachCep(event.cep);
+    final ResponseCep result = await searchCep.seachCep(event.cep);
+
+    if (result.left == null) {
       await Future.delayed(const Duration(seconds: 1));
-      emit(
-        SCSuccess(cep: result),
-      );
-    } catch (e) {
+      emit(SCSuccess(cep: result.right!));
+    } else {
       await Future.delayed(const Duration(seconds: 3));
-      emit(
-        const SCFailure(message: 'Error'),
-      );
+      emit(const SCFailure(message: 'Error'));
     }
   }
 
