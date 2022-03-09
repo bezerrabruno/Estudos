@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.firebase">
+    package="com.example.app_sqflite">
    <application
-        android:label="firebase"
+        android:label="app_sqflite"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
