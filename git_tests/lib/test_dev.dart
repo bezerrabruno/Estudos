@@ -1,3 +1,3 @@
 class TestDev {
-  static const String message = 'TestDev3';
+  static const String message = 'TestDev2';
 }
