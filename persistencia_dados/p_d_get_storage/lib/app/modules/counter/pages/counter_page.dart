@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import '../data/app_storage.dart';
+import '../controller/counter_controller.dart';
 
 class CounterPage extends StatefulWidget {
   const CounterPage({Key? key}) : super(key: key);
@@ -10,20 +11,22 @@ class CounterPage extends StatefulWidget {
 }
 
 class _CounterPageState extends State<CounterPage> {
-  final _storage = AppStorage();
-
-  void _incrementCounter() {
-    setState(() {
-      _storage.clicks.val++;
-    });
-  }
+  final controller = Get.find<CounterController>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Your Clicks ${_storage.userName.val}'),
+        title: Obx(() {
+          return Text('Your Clicks ${controller.userName}');
+        }),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () => controller.logout(),
+          ),
+        ],
       ),
       body: Center(
         child: Column(
@@ -32,15 +35,17 @@ class _CounterPageState extends State<CounterPage> {
             const Text(
               'You have pushed the button this many times:',
             ),
-            Text(
-              '${_storage.clicks.val}',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+            Obx(() {
+              return Text(
+                '${controller.clicks}',
+                style: Theme.of(context).textTheme.headline4,
+              );
+            }),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () => controller.updateClick(),
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
