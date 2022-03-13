@@ -1,4 +1,4 @@
-name: p_d_shared_preferences
+name: p_d_sqflite
 description: A new Flutter project.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev

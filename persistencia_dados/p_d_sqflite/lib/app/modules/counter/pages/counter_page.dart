@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import '../data/dao/user_dao.dart';
+import '../controller/counter_controller.dart';
 
 class CounterPage extends StatefulWidget {
   const CounterPage({Key? key}) : super(key: key);
@@ -10,33 +11,22 @@ class CounterPage extends StatefulWidget {
 }
 
 class _CounterPageState extends State<CounterPage> {
-  final dao = UserDao();
-
-  String userName = '';
-  int clicks = 0;
-
-  getUserName() async {
-    userName = await dao.findName();
-    setState(() {});
-  }
-
-  getClicks() async {
-    clicks = await dao.findClicks();
-    setState(() {});
-  }
-
-  setClicks(int clicks) async {
-    await dao.updateClicks(clicks);
-  }
+  final controller = Get.find<CounterController>();
 
   @override
   Widget build(BuildContext context) {
-    getUserName();
-    getClicks();
     return Scaffold(
       appBar: AppBar(
-        title: Text('Your Clicks $userName'),
+        title: Obx(() {
+          return Text('Your Clicks ${controller.userName}');
+        }),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () => controller.logout(),
+          ),
+        ],
       ),
       body: Center(
         child: Column(
@@ -45,15 +35,17 @@ class _CounterPageState extends State<CounterPage> {
             const Text(
               'You have pushed the button this many times:',
             ),
-            Text(
-              '$clicks',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+            Obx(() {
+              return Text(
+                '${controller.clicks}',
+                style: Theme.of(context).textTheme.headline4,
+              );
+            }),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => setClicks(clicks + 1),
+        onPressed: () => controller.updateClick(),
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
