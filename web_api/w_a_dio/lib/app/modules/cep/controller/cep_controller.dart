@@ -23,15 +23,14 @@ class CepController extends GetxController {
   final TextEditingController controllerText = TextEditingController();
 
   final randomList = <String>[
-    '05164-020',
-    '23915-503',
-    '72911-009',
-    '48288-970',
-    '01311-000',
+    '05164020',
+    '23915503',
+    '72911009',
+    '48288970',
+    '01311000',
   ];
 
   final _state = AppState.initial.obs;
-
   AppState get state => _state.value;
   set state(AppState newcep) => _state.value = newcep;
 
@@ -53,6 +52,14 @@ class CepController extends GetxController {
     super.onInit();
   }
 
+  validCep() {
+    if (controllerText.text.contains(RegExp(r'[0-9]'))) {
+      searchCep();
+    } else {
+      state = AppState.failure;
+    }
+  }
+
   Future<void> searchCepRandom() async {
     if (randomCep <= 4) {
       controllerText.text = randomList[randomCep];
@@ -71,7 +78,7 @@ class CepController extends GetxController {
 
     controllerText.text = '';
 
-    if (mapCep.isEmpty) {
+    if (mapCep['Error'] == 'CepInvalid') {
       await Future.delayed(const Duration(seconds: 2));
       state = AppState.failure;
     } else {

@@ -10,7 +10,7 @@ class CepDio {
       var response = await dio.get('https://viacep.com.br/ws/$cep/json/');
       return response.data;
     } catch (e) {
-      rethrow;
+      return {'Error': 'CepInvalid'};
     }
   }
 }

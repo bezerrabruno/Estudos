@@ -41,7 +41,8 @@ class _CepPageState extends State<CepPage> {
                   children: <Widget>[
                     SizedBox(
                       width: 300,
-                      child: TextField(
+                      child: TextFormField(
+                        maxLength: 8,
                         controller: controller.controllerText,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
@@ -54,10 +55,10 @@ class _CepPageState extends State<CepPage> {
                       ),
                     ),
                     controller.state == AppState.failure
-                        ? const Text('Erro, Tente novamente.')
+                        ? const Text('Failure, try again')
                         : const SizedBox(),
                     ElevatedButton(
-                      onPressed: () => controller.searchCep(),
+                      onPressed: () => controller.validCep(),
                       child: const Text('Search'),
                     ),
                   ]),
