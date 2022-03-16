@@ -10,7 +10,7 @@ class CepConnect {
       var response = await connect.get('https://viacep.com.br/ws/$cep/json/');
       return response.body;
     } catch (e) {
-      rethrow;
+      return {'Error': 'CepInvalid'};
     }
   }
 }

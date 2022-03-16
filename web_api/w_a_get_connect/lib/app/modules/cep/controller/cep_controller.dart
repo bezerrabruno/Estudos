@@ -53,6 +53,14 @@ class CepController extends GetxController {
     super.onInit();
   }
 
+  validCep() {
+    if (controllerText.text.contains(RegExp(r'[0-9]'))) {
+      searchCep();
+    } else {
+      state = AppState.failure;
+    }
+  }
+
   Future<void> searchCepRandom() async {
     if (randomCep <= 4) {
       controllerText.text = randomList[randomCep];
@@ -71,7 +79,7 @@ class CepController extends GetxController {
 
     controllerText.text = '';
 
-    if (mapCep.isEmpty) {
+    if (mapCep['Error'] == 'CepInvalid') {
       await Future.delayed(const Duration(seconds: 2));
       state = AppState.failure;
     } else {

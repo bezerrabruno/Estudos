@@ -54,10 +54,10 @@ class _CepPageState extends State<CepPage> {
                       ),
                     ),
                     controller.state == AppState.failure
-                        ? const Text('Erro, Tente novamente.')
+                        ? const Text('Failure, try again')
                         : const SizedBox(),
                     ElevatedButton(
-                      onPressed: () => controller.searchCep(),
+                      onPressed: () => controller.validCep(),
                       child: const Text('Search'),
                     ),
                   ]),
