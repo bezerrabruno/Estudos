@@ -16,9 +16,11 @@ void main() {
 
   group('Seach Widgets', () {
     testWidgets('Existing TextField', (WidgetTester tester) async {
-      final elevatedButton = find.byType(ElevatedButton);
+      await tester.pumpWidget(material);
 
-      expect(elevatedButton, findsOneWidget);
+      final textField = find.byType(TextField);
+
+      expect(textField, findsOneWidget);
     });
 
     testWidgets('existing card Cep', (WidgetTester tester) async {
