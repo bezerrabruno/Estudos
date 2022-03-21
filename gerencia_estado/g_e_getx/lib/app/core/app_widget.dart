@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:g_e_getx/app/core/routes/routes.dart';
 import 'package:get/get.dart';
 
 import 'routes/pages.dart';
@@ -10,11 +9,11 @@ class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: 'Dio',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: Routes.hunt,
+      initialRoute: '/checks',
       getPages: AppPages.pages,
     );
   }

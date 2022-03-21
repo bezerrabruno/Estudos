@@ -1,5 +1,5 @@
 abstract class Routes {
-  static const String home = '/home';
-  static const String hunt = '/hunt';
-  static const String profile = '/profile';
+  static const checks = '/checks';
+  static const login = '/login';
+  static const cep = '/cep';
 }
